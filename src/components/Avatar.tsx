@@ -7,7 +7,6 @@ const Avatar = (props) => {
     const {animations: greetingAnimation} = useFBX('animations/Greeting.fbx')
 
     greetingAnimation[0].name = 'Greeting'
-    console.log(greetingAnimation)
     const {actions} = useAnimations(greetingAnimation, group)
 
     useEffect(()=>{

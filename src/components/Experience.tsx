@@ -1,26 +1,29 @@
 import React from 'react'
-import { extend } from '@react-three/fiber'
-import {OrbitControls, Plane, SoftShadows} from "@react-three/drei";
+import {
+    ContactShadows,
+    Environment,
+    OrbitControls,
+    SoftShadows
+} from "@react-three/drei";
 import Avatar from "./Avatar.tsx";
+import Dog from "./Dog";
 
-const Experience = () => {
+const Experience = (props) => {
   return (
     <>
-      <OrbitControls/>
-        <ambientLight />
-        <directionalLight
-            position={[-5, 5, 5]}
-            castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-        />
-        <group  position={[0, -1, 0]}>
-            <Avatar/>
+      <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableZoom={true} enablePan={true}/>
+        <Environment preset='sunset'/>
+        <directionalLight intensity={1} position={[-5, 5, 5]} castShadow shadow-mapSize={2048} shadow-bias={-0.0001} />
+        <group position={[1, -1, -0.5]}>
+                <Avatar/>
+            <mesh position={[-1,0,0]} scale={[0.01,0.01,0.01]}>
+                <Dog />
+            </mesh>
+            <ContactShadows position={[-1,0,0.5]} opacity={0.4}  blur={1} far={10} resolution={256} color="#000"/>
+
         </group>
-        <mesh rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -1.01, 0]} receiveShadow>
-            <planeGeometry args={[10, 10, 1, 1]} />
-            <shadowMaterial transparent opacity={0.5} />
-        </mesh>
+
+
     </>
   )
 }

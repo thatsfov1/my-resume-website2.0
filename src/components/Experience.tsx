@@ -11,7 +11,7 @@ import Dog from "./Dog";
 const Experience = (props) => {
   return (
     <>
-      <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableZoom={true} enablePan={true}/>
+      <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableZoom={false}/>
         <Environment preset='sunset'/>
         <directionalLight intensity={1} position={[-5, 5, 5]} castShadow shadow-mapSize={2048} shadow-bias={-0.0001} />
         <group position={[1, -1, -0.5]}>

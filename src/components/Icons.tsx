@@ -4,7 +4,7 @@ import {SiCodewars} from "react-icons/si";
 
 const Icons = () => {
   return (
-    <div className='text-[#8aaee0] flex'>
+    <div className='text-[#8aaee0] flex max-w-[1200px] justify-end gap-2 '>
         <a target='_blank' href='https://github.com/thatsfov1' className='pl-2'>
             <FaGithub size={30}/>
         </a>

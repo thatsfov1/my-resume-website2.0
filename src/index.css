@@ -9,6 +9,21 @@
     height: 100vh;
 }
 
+*::selection{
+  background-color: #f3f0fa;
+  color:  #395886;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+  }
+
+*{
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .icon{
     padding-left: 10px;
 }

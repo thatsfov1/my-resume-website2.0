@@ -1,13 +1,13 @@
 import React from "react";
 import Icons from "./Icons";
-import { skills, languages } from "../constants/index";
+import { skills, languages } from "../constants";
 import { motion } from "framer-motion";
 
 const Section = ({ children }) => {
   return (
     <section
-      className="min-h-screen w-screen p-8 max-w-screen-2xl mx-auto
-                flex flex-col items-start justify-center"
+      className="h-screen w-screen p-16 max-w-screen-2xl mx-auto
+      flex flex-col items-start justify-center"
     >
       {children}
     </section>
@@ -42,17 +42,17 @@ const AboutSection = () => {
         Hi there!
       </motion.h1>
       <motion.p
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
         className="text-[#f0f4fa]"
       >
         I'm <span className="italic">Yevhenii Kulikovskyi,</span>
       </motion.p>
       <motion.p
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
         className="text-left mt-1 text-[#f0f4fa] w-[400px]"
       >
         A Frontend Developer with plenty of experience in freelance based in
@@ -61,9 +61,9 @@ const AboutSection = () => {
         improve my skills.
       </motion.p>
       <motion.button
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay:0.6 }}
         className="btn"
       >
         Check out my Projects
@@ -75,10 +75,10 @@ const AboutSection = () => {
 const SkillsSection = () => {
   return (
     <Section>
-      <motion.div whileInView={"visible"} className="">
-        <h1 className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
+      <motion.div whileInView={"visible"}>
+        <motion.h1 initial={{opacity:0, x:-100}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}} className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
           My Skills
-        </h1>
+        </motion.h1>
         <div className=" w-[500px] mt-8 flex gap-8 flex-wrap">
           {skills.map((skill) => (
             <div className="block-container w-14 h-14" key={skill.name}>
@@ -93,9 +93,10 @@ const SkillsSection = () => {
             </div>
           ))}
         </div>
-        <h1 className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mt-10">
+        <motion.h1 initial={{opacity:0, x:-100}} whileInView={{opacity:1, x:0}}
+         transition={{duration:0.5, delay:0.2}} className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mt-10">
           Languages I know
-        </h1>
+        </motion.h1>
         <div>
           {languages.map((language, index) => (
             <div className="w-64" key={index}>

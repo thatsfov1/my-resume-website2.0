@@ -1,14 +1,32 @@
-import React from 'react'
 import {
-    ContactShadows,
-    Environment,
-    OrbitControls,
-    SoftShadows
+  ContactShadows,
+  Environment,
+  OrbitControls
 } from "@react-three/drei";
-import Avatar from "./Avatar.tsx";
+import { useFrame } from "@react-three/fiber";
+import { animate, useMotionValue } from 'framer-motion';
+import { useEffect } from 'react';
+import Avatar from "./Avatar";
 import Dog from "./Dog";
 
-const Experience = (props) => {
+
+
+
+const Experience = ({menuOpened}:{menuOpened:boolean}) => {
+  
+  const cameraPositionX = useMotionValue()
+  const cameraLookAtX = useMotionValue()
+
+  useEffect(() => {
+    animate(cameraPositionX, menuOpened ? -2 :0)
+    animate(cameraLookAtX, menuOpened ? 2 :0)
+  }, [menuOpened])
+
+  useFrame((state) => {
+    state.camera.position.x = cameraPositionX.get()
+    state.camera.lookAt(cameraLookAtX.get(), 0,0)
+  })
+   
   return (
     <>
       <OrbitControls minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} enableZoom={false}/>

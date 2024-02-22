@@ -3,7 +3,12 @@ import {useFrame} from "@react-three/fiber";
 import {gsap} from "gsap"
 import {useScroll} from "@react-three/drei";
 
-const ScrollManager = ({section, onSectionChange}) => {
+type Props = {
+    section:number,
+    onSectionChange:React.Dispatch<React.SetStateAction<number>>
+}
+
+const ScrollManager = ({section, onSectionChange}:Props) => {
 
     const data = useScroll();
     const lastScroll = useRef(0)
@@ -14,7 +19,7 @@ const ScrollManager = ({section, onSectionChange}) => {
 
     useEffect(() => {
         gsap.to(data.el, {
-            duration:1,
+            duration:0.5,
             scrollTop: section *data.el.clientHeight,
             onStart: () => {
                 isAnimating.current = true

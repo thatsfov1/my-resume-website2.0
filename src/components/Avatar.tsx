@@ -5,12 +5,19 @@ const Avatar = (props) => {
     const {nodes, materials} = useGLTF("models/my_model.glb");
     const group = useRef()
     const {animations: greetingAnimation} = useFBX('animations/Greeting.fbx')
+    const {animations: standingAnimation} = useFBX('animations/Standing Idle.fbx')
+    const {animations: standingUpAnimation} = useFBX('animations/Standing Up.fbx')
+    const {animations: lookAroundAnimation} = useFBX('animations/Look Around.fbx')
 
     greetingAnimation[0].name = 'Greeting'
-    const {actions} = useAnimations(greetingAnimation, group)
+    standingUpAnimation[0].name = 'Standing Up'
+    lookAroundAnimation[0].name = 'Look Around'
+    standingAnimation[0].name = 'Standing'
+    const {actions} = useAnimations([greetingAnimation[0],standingUpAnimation[0],
+         lookAroundAnimation[0], standingAnimation[0]], group)
 
     useEffect(()=>{
-        actions['Greeting'].reset().play()
+        actions['Look Around'].reset().play()
     },[])
 
     return (

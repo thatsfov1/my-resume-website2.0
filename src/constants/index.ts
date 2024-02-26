@@ -17,6 +17,7 @@ import {
     tailwindcss,
     typescript
 } from "../assets/icons";
+import movie from "../assets/images/movie.png"
 
 export const skills = [
     {
@@ -88,31 +89,36 @@ export const skills = [
 
 export const projects = [
     {
-        iconUrl: socialnetwork,
+        iconUrl: movie,
         theme: 'btn-back-red',
         name: 'MeetFriends',
         description: 'Developed a React prototype for a social network, which includes user authentication, CRUD operations, chat simulation and profile customization',
+        github:"https://github.com/thatsfov1/meet-friends",
+        liveLink:""
     },
     {
-        iconUrl: movieselector,
+        iconUrl: movie,
         theme: 'btn-back-blue',
         name: 'My Movie Choice',
         description: 'Built a React app aiding movie selection. Enables access to user ratings, descriptions, cast, trailers, and similar content suggestions for movies or series',
-        link: 'https://github.com/thatsfov1/my-movie-choice',
+        github: 'https://github.com/thatsfov1/my-movie-choice',
+        liveLink:""
     },
     {
-        iconUrl: ecommerce,
+        iconUrl: movie,
         theme: 'btn-back-pink',
         name: 'E-commerce shop "Chic Stock" ',
         description: 'Created a React-based laptop shop featuring modern design, animations, and seamless Stripe integration for transactions.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
+        github: 'https://github.com/adrianhajdin/social_media_app',
+        liveLink:""
     },
     {
-        iconUrl: recipebook,
+        iconUrl: movie,
         theme: 'btn-back-black',
         name: 'Food Recipes',
         description: 'Developed a web application for finding recipes. More than thousands of recipes that are listed on basis of various categories',
-        link: 'https://github.com/adrianhajdin/projects_realestate',
+        github: 'https://github.com/adrianhajdin/projects_realestate',
+        liveLink:""
     }
 ]
 
@@ -134,3 +140,41 @@ export const languages = [
         level:100
     }
 ]
+
+// export const projects = [
+//     {
+//         title:"My movie choice",
+//         image:"",
+//         subtitle:"Impressive movie app",
+//         github:"",
+//         liveLink:"",
+//     },
+//     {
+//         title:"My movie choice",
+//         image:"",
+//         subtitle:"Impressive movie app",
+//         github:"",
+//         liveLink:"",
+//     },
+//     {
+//         title:"My movie choice",
+//         image:"",
+//         subtitle:"Impressive movie app",
+//         github:"",
+//         liveLink:"",
+//     },
+//     {
+//         title:"My movie choice",
+//         image:"",
+//         subtitle:"Impressive movie app",
+//         github:"",
+//         liveLink:"",
+//     },
+//     {
+//         title:"My movie choice",
+//         image:"",
+//         subtitle:"Impressive movie app",
+//         github:"",
+//         liveLink:"",
+//     }
+// ]

@@ -1,7 +1,8 @@
 import React from "react";
 import Icons from "./Icons";
-import { skills, languages } from "../constants";
+import { skills, languages, projects } from "../constants";
 import { motion } from "framer-motion";
+import ProjectCard from "./ProjectCard";
 
 const Section = ({ children }) => {
   return (
@@ -21,9 +22,7 @@ const Interface = () => {
       <div className="flex flex-col items-center w-screen">
         <AboutSection />
         <SkillsSection />
-        <Section>
-          <h1>Projects</h1>
-        </Section>
+        <ProjectsSection/>
         <ContactSection />
       </div>
     </>
@@ -76,7 +75,8 @@ const SkillsSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"}>
-        <motion.h1 initial={{opacity:0, x:-100}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}} className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
+        <motion.h1 initial={{opacity:0, x:-100}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}} 
+        className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
           My Skills
         </motion.h1>
         <div className=" w-[500px] mt-8 flex gap-8 flex-wrap">
@@ -130,15 +130,42 @@ const SkillsSection = () => {
   );
 };
 
+
+const ProjectsSection = () => {
+    return (
+        <Section>
+          <h1 className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
+            Portfolio
+          </h1>
+          <p className="text-2xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
+            Projects I've done
+          </p>
+          <div className='flex flex-wrap gap-4 overflow-y-scroll'>
+          {projects.map((project)=>(
+               <ProjectCard key={project.name} name={project.name} description={project.description} 
+               iconUrl={project.iconUrl} github={project.github} liveLink={project.liveLink}/>
+            ))}
+          </div>
+            
+        </Section>
+)
+}
+
 const ContactSection = () => {
   return (
     <Section>
-      <h1>Contact me</h1>
-      <form className="flex flex-col p-8 bg-white">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="email" placeholder="Your message" />
+      <div className="bg-blue-palette-100 py-5 px-2 rounded-xl">
+      <h1 className="text-4xl font-extrabold  text-blue-palette-600 mb-3">Contact me</h1>
+      <form className="flex flex-col gap-4 p-8 bg-white">
+        <input className="p-2 rounded-lg" type="text" placeholder="Name" />
+        <input className="p-2 rounded-lg" type="email" placeholder="Email" />
+        <textarea className="p-2 rounded-lg h-[200px] resize-none" placeholder="Your message" />
+        <button className="bg-blue-palette-600 text-blue-palette-100 p-5 w-full rounded-lg">
+          Send Message
+          </button>
       </form>
+      </div>
+     
     </Section>
   );
 };

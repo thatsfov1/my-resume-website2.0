@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Icons from "./Icons";
 import { skills, languages, projects } from "../constants";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
+import Slider from "react-slick";
+import ContactSection from "../sections/ContactSection";
+
 
 const Section = ({ children }) => {
   return (
@@ -23,7 +26,10 @@ const Interface = () => {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection/>
-        <ContactSection />
+        <Section>
+          <ContactSection />
+        </Section>
+        
       </div>
     </>
   );
@@ -132,6 +138,14 @@ const SkillsSection = () => {
 
 
 const ProjectsSection = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    adaptiveHeight:true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
     return (
         <Section>
           <h1 className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
@@ -141,33 +155,17 @@ const ProjectsSection = () => {
             Projects I've done
           </p>
           <div className='flex flex-wrap gap-4 overflow-y-scroll'>
-          {projects.map((project)=>(
+          <Slider {...settings}>
+            {projects.map((project)=>(
                <ProjectCard key={project.name} name={project.name} description={project.description} 
                iconUrl={project.iconUrl} github={project.github} liveLink={project.liveLink}/>
             ))}
+          </Slider>
           </div>
             
         </Section>
 )
 }
 
-const ContactSection = () => {
-  return (
-    <Section>
-      <div className="bg-blue-palette-100 py-5 px-2 rounded-xl">
-      <h1 className="text-4xl font-extrabold  text-blue-palette-600 mb-3">Contact me</h1>
-      <form className="flex flex-col gap-4 p-8 bg-white">
-        <input className="p-2 rounded-lg" type="text" placeholder="Name" />
-        <input className="p-2 rounded-lg" type="email" placeholder="Email" />
-        <textarea className="p-2 rounded-lg h-[200px] resize-none" placeholder="Your message" />
-        <button className="bg-blue-palette-600 text-blue-palette-100 p-5 w-full rounded-lg">
-          Send Message
-          </button>
-      </form>
-      </div>
-     
-    </Section>
-  );
-};
 
 export default Interface;

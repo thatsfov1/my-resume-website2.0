@@ -49,8 +49,9 @@ const Experience = ({
         shadow-mapSize={2048}
         shadow-bias={-0.0001}
       />
-      <group position={[1, -1, -0.5]}>
-        <group>
+      <group position={[1, -1, -0.5]}
+      >
+        <group rotation={[0,-0.3,0]}>
           <Avatar animation={characterAnimation} />
         </group>
         <mesh position={[-1, 0, 0]} scale={[0.01, 0.01, 0.01]}>

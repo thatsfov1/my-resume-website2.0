@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 
 const Avatar = ({ animation }: { animation: string }) => {
-  const { nodes, materials } = useGLTF("models/my_model.glb");
+  const { nodes, materials } = useGLTF("models/untitled.glb");
   const group = useRef();
   const { animations: greetingAnimation } = useFBX("animations/Greeting.fbx");
   const { animations: standingAnimation } = useFBX(
@@ -44,7 +44,7 @@ const Avatar = ({ animation }: { animation: string }) => {
   return (
     <group ref={group} dispose={null}>
       <group rotation-x={-Math.PI / 2}>
-        <primitive object={nodes.Hips} />
+      <primitive object={nodes.Hips} />
         <skinnedMesh
           castShadow
           name="EyeLeft"
@@ -132,6 +132,7 @@ const Avatar = ({ animation }: { animation: string }) => {
           morphTargetInfluences={nodes.Wolf3D_Body.morphTargetInfluences}
         />
       </group>
+        
     </group>
   );
 };

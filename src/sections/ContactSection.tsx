@@ -47,24 +47,24 @@ const ContactSection = () => {
   }
   
     return (
-        <div className="bg-blue-palette-100 py-5 px-2 rounded-xl">
+        <div className="bg-blue-palette-100 pt-5 px-2 rounded-xl">
         <h1 className="text-4xl font-extrabold  text-blue-palette-600 mb-3">Contact me</h1>
         <form className="flex flex-col gap-4 p-8 bg-white" onSubmit={handleSubmit}>
           <input 
-          className="p-2 rounded-lg" type="text"
+          className="p-2 rounded-lg outline-none" type="text"
            placeholder="Name" 
            required
            name='name'
            value={form.name}
             onChange={handleChange}/>
-          <input className="p-2 rounded-lg"
+          <input className="p-2 rounded-lg outline-none"
            type="email" placeholder="john@gmail.com" required
            name='email'
            value={form.email} onChange={handleChange}/>
-          <textarea className="p-2 rounded-lg h-[200px] resize-none"
+          <textarea className="p-2 rounded-lg h-[200px] resize-none outline-none"
            placeholder="Your message" required name='message' value={form.message}
            onChange={handleChange}/>
-          <button disabled={isLoading} type="submit" className="bg-blue-palette-600 text-blue-palette-100 p-5 w-full rounded-lg">
+          <button disabled={isLoading} type="submit" className="bg-blue-palette-600 text-blue-palette-100 p-3 w-full rounded-lg">
           {isLoading ? 'Sending...' : 'Send message'}
             </button>
         </form>

@@ -1,9 +1,8 @@
 import {motion} from 'framer-motion';
 
-
 const AboutSection = () => {
   return (
-    <>
+    <div className="text-left h-screen flex flex-col justify-center">
       <motion.h1
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,7 +37,7 @@ const AboutSection = () => {
       >
         Check out my Projects
       </motion.button>
-      </>
+      </div>
   );
 };
 

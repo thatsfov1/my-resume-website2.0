@@ -47,11 +47,12 @@ const ContactSection = () => {
   }
   
     return (
-        <div className="bg-blue-palette-100 pt-5 px-2 rounded-xl">
+      <div className="h-screen flex justify-center ">
+        <div className="bg-blue-palette-100 pt-5 h-[80%] px-4 rounded-xl flex flex-col items-center relative">
         <h1 className="text-4xl font-extrabold  text-blue-palette-600 mb-3">Contact me</h1>
-        <form className="flex flex-col gap-4 p-8 bg-white" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 p-8 bg-white " onSubmit={handleSubmit}>
           <input 
-          className="p-2 rounded-lg outline-none" type="text"
+          className="p-2 rounded-lg outline-none " type="text"
            placeholder="Name" 
            required
            name='name'
@@ -64,10 +65,12 @@ const ContactSection = () => {
           <textarea className="p-2 rounded-lg h-[200px] resize-none outline-none"
            placeholder="Your message" required name='message' value={form.message}
            onChange={handleChange}/>
-          <button disabled={isLoading} type="submit" className="bg-blue-palette-600 text-blue-palette-100 p-3 w-full rounded-lg">
+          <button disabled={isLoading} type="submit" 
+          className="bg-blue-palette-600 text-blue-palette-100 p-3 w-[310px] rounded-lg absolute bottom-6 left-0 right-0 mx-auto">
           {isLoading ? 'Sending...' : 'Send message'}
             </button>
         </form>
+        </div>
         </div>
     );
   };

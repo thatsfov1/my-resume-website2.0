@@ -12,7 +12,7 @@ const Section = ({ children }) => {
   return (
     <section
       className="h-screen w-screen p-16 max-w-screen-2xl mx-auto
-      flex flex-col items-start justify-center"
+      flex flex-col items-start justify-center snap-start"
     >
       {children}
     </section>
@@ -20,10 +20,15 @@ const Section = ({ children }) => {
 };
 
 const Interface = () => {
+
+
+
+
+
   return (
     <>
       <Icons />
-      <div className="flex flex-col items-center w-screen">
+      <div className="sections-container">
         <Section>
           <AboutSection />
         </Section>

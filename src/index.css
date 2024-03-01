@@ -30,7 +30,7 @@
 }
 
 .btn{
-    @apply text-[#f0f4fa] mt-[70px] px-4 py-2 bg-[#8aaee0] rounded-md;
+    @apply text-[#f0f4fa] mt-[70px] w-[220px] py-2 bg-[#8aaee0] rounded-md;
     position:relative;
     border:none;
     transition: .4s ease-in;
@@ -48,7 +48,6 @@
     background: #f0f3fa;
     height:100%;
     left:-35%;
-
     top:0;
     transform:skew(50deg);
     transition-duration: .6s;
@@ -111,4 +110,10 @@ body {
 
 .block-container:hover > .btn-front {
     transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
+}
+
+
+.sections-container{
+    @apply flex flex-col items-center w-screen overflow-y-scroll h-screen;
+    scroll-snap-type: y mandatory;
 }

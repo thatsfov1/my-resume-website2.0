@@ -23,6 +23,7 @@ const Experience = ({
   }, [menuOpened]);
 
   useFrame((state) => {
+    
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
   });

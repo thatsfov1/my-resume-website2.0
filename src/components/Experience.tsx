@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion-3d";
 import Avatar from "./Avatar";
 import Dog from "./Dog";
+import { framerMotionConfig } from "../config";
 
 const Experience = ({
   section,
@@ -18,8 +19,12 @@ const Experience = ({
   const cameraLookAtX = useMotionValue();
 
   useEffect(() => {
-    animate(cameraPositionX, menuOpened ? -2 : 0);
-    animate(cameraLookAtX, menuOpened ? 2 : 0);
+    animate(cameraPositionX, menuOpened ? -2 : 0,{
+      ...framerMotionConfig
+    });
+    animate(cameraLookAtX, menuOpened ? 2 : 0,{
+      ...framerMotionConfig
+    });
   }, [menuOpened]);
 
   useFrame((state) => {

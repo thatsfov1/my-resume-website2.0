@@ -117,3 +117,36 @@ body {
     @apply flex flex-col items-center w-screen overflow-y-scroll h-screen;
     scroll-snap-type: y mandatory;
 }
+
+
+.slider-controler {
+    position: relative;
+    bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-controler .swiper-button-next {
+    left: 58% !important;
+    transform: translateX(-58%) !important;
+}
+
+.slider-controler .slider-arrow {
+    background: var(--white);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    left: 42%;
+    transform: translateX(-42%);
+    filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+  
+.slider-controler .slider-arrow ion-icon {
+    font-size: 2rem;
+    color: #222224;
+}
+  
+.slider-controler .slider-arrow::after {
+    content: '';
+}

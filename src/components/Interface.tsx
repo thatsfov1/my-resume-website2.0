@@ -11,7 +11,7 @@ import ProjectsSection from "../sections/ProjectsSection";
 const Section = ({ children }) => {
   return (
     <section
-      className="h-screen w-screen p-16 max-w-screen-2xl mx-auto
+      className="h-screen w-screen max-w-screen-2xl mx-auto
       flex flex-col items-start justify-center snap-start"
     >
       {children}
@@ -20,10 +20,6 @@ const Section = ({ children }) => {
 };
 
 const Interface = () => {
-
-
-
-
 
   return (
     <>

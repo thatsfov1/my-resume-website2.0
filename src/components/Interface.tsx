@@ -11,8 +11,8 @@ import ProjectsSection from "../sections/ProjectsSection";
 const Section = ({ children }) => {
   return (
     <section
-      className="h-screen w-screen max-w-screen-2xl mx-auto
-      flex flex-col items-start justify-center snap-start"
+      className="h-screen w-screen p-16 max-w-screen-2xl mx-auto
+      flex flex-col items-start justify-center"
     >
       {children}
     </section>
@@ -24,16 +24,14 @@ const Interface = () => {
   return (
     <>
       <Icons />
-      <div className="sections-container">
+      <div className="flex flex-col items-center w-screen">
         <Section>
           <AboutSection />
         </Section>
         <Section>
            <SkillsSection />
         </Section>
-        <Section>
           <ProjectsSection/>
-        </Section>
         <Section>
           <ContactSection />
         </Section>

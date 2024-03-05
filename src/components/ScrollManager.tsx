@@ -1,49 +1,81 @@
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { gsap } from "gsap";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-const ScrollManager = ({ section, onSectionChange }) => {
-    const data = useScroll();
-    const lastScroll = useRef(0);
-    const isAnimating = useRef(false);
-
-    data.fill.classList.add("top-0");
-    data.fill.classList.add("absolute");
-
-    useEffect(() => {
-        gsap.to(data.el, {
-            duration: 1,
-            scrollTop: section * data.el.clientHeight,
-            onStart: () => {
-                isAnimating.current = true;
-            },
-            onComplete: () => {
-                isAnimating.current = false;
-            },
-        });
-    }, [section]);
-
-    useFrame(() => {
-        if (isAnimating.current) {
-            lastScroll.current = data.scroll.current;
-            return;
-        }
-
-        const curSection = Math.floor(data.scroll.current * data.pages);
-        if (data.scroll.current > lastScroll.current && curSection === 0) {
-            onSectionChange(1);
-        }
-        if (
-            data.scroll.current < lastScroll.current &&
-            data.scroll.current < 1 / (data.pages - 1)
-        ) {
-            onSectionChange(0);
-        }
-        lastScroll.current = data.scroll.current;
-    });
-
-    return null;
+type Props = {
+  section: number;
+  onSectionChange: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export default ScrollManager
+export const ScrollManager = ({ section, onSectionChange }: Props) => {
+  const data = useScroll();
+  const lastScroll = useRef(0);
+  const isAnimating = useRef(false);
+
+  data.fill.classList.add("top-0");
+  data.fill.classList.add("absolute");
+
+  useFrame(() => {
+    if (isAnimating.current) {
+      lastScroll.current = data.offset;
+      return;
+    }
+
+    const curSection = Math.floor(data.offset * data.pages);
+    const sectionHeight = data.el.clientHeight;
+
+    switch (curSection) {
+      case 0:
+        if (data.offset > lastScroll.current) {
+          onSectionChange(1);
+          data.el.scrollTo(0, section * sectionHeight);
+        }
+        break;
+
+      case 1:
+        if (data.offset > lastScroll.current) {
+          onSectionChange(2);
+          data.el.scrollTo(0, section * sectionHeight);
+        } else if (
+          data.offset < lastScroll.current &&
+          data.offset < 1 / (data.pages - 1)
+        ) {
+          onSectionChange(0);
+          data.el.scrollTo(0, section * sectionHeight);
+        }
+        break;
+
+      case 2:
+        if (data.offset > lastScroll.current) {
+          onSectionChange(3);
+          data.el.scrollTo(0, section * sectionHeight);
+        } else if (
+          data.offset < lastScroll.current &&
+          data.offset < 2 / (data.pages - 1)
+        ) {
+          onSectionChange(1);
+          data.el.scrollTo(0, section * sectionHeight);
+        }
+        break;
+
+      case 3:
+        if (
+          data.offset < lastScroll.current &&
+          data.offset < 3 / (data.pages - 1)
+        ) {
+          onSectionChange(2);
+          data.el.scrollTo(0, section * sectionHeight);
+        }
+        break;
+
+      // Add more cases if you have additional sections
+
+      default:
+        break;
+    }
+
+    lastScroll.current = data.offset;
+  });
+
+  return null;
+};

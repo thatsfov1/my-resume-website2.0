@@ -15,30 +15,30 @@ const Experience = ({
   section: number;
 }) => {
   const { viewport } = useThree();
-  const cameraPositionX = useMotionValue();
-  const cameraLookAtX = useMotionValue();
+  const cameraPositionX = useMotionValue(0);
+  const cameraLookAtX = useMotionValue(0);
 
   useEffect(() => {
-    animate(cameraPositionX, menuOpened ? -2 : 0,{
-      ...framerMotionConfig
+    animate(cameraPositionX, menuOpened ? -2 : 0, {
+      ...framerMotionConfig,
     });
-    animate(cameraLookAtX, menuOpened ? 2 : 0,{
-      ...framerMotionConfig
+    animate(cameraLookAtX, menuOpened ? 2 : 0, {
+      ...framerMotionConfig,
     });
   }, [menuOpened]);
 
   useFrame((state) => {
-    
     state.camera.position.x = cameraPositionX.get();
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
   });
 
-  const [characterAnimation, setCharacterAnimation] = useState("Look Around");
+  const [characterAnimation, setCharacterAnimation] = useState("Falling");
+
   useEffect(() => {
     setCharacterAnimation("Falling");
     setTimeout(() => {
       setCharacterAnimation(section === 0 ? "Greeting" : "Look Around");
-    }, 2400);
+    }, 2299);
   }, [section]);
   return (
     <>
@@ -55,14 +55,19 @@ const Experience = ({
         shadow-mapSize={2048}
         shadow-bias={-0.0001}
       />
-      <group position={[1, -1, -0.5]}
+      <motion.group
+        position={[1, -1, -0.5]}
+        animate={{
+          z: section === 2 ? 0 : -0.5,
+          y: section === 2 ? viewport.height : -1,
+        }}
       >
-        <group rotation={[0,-0.3,0]}>
+        <group rotation={[0, -0.3, 0]}>
           <Avatar animation={characterAnimation} />
         </group>
-        <mesh position={[-1, 0, 0]} scale={[0.01, 0.01, 0.01]}>
-          <Dog />
-        </mesh>
+        <group position={[-1, 0, 0]} scale={[0.01, 0.01, 0.01]}>
+          <Dog section={section} />
+        </group>
         <ContactShadows
           position={[-1, 0, 0.5]}
           opacity={0.4}
@@ -71,7 +76,7 @@ const Experience = ({
           resolution={256}
           color="#000"
         />
-      </group>
+      </motion.group>
     </>
   );
 };

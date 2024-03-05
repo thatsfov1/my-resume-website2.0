@@ -6,26 +6,26 @@ import { Cursor } from "./components/Cursor";
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
 import Menu from "./components/Menu";
-import { useScroll } from "@react-three/drei";
-import ScrollManager from "./components/ScrollManager";
-import {Toaster} from "react-hot-toast";
+import { ScrollManager } from "./components/ScrollManager";
+import { Toaster } from "react-hot-toast";
 import Loader from "./components/Loader";
 
 function App() {
   const [section, setSection] = useState(0);
   const [menuOpened, setMenuOpened] = useState(false);
-  
+
   useEffect(() => {
     setMenuOpened(false);
   }, [section]);
 
+
   return (
-    <Suspense fallback={<Loader/>}>
-    <Toaster />
+    <Suspense fallback={<Loader />}>
+      <Toaster />
       <Canvas shadows camera={{ position: [0.4, 0.3, 2.5], fov: 50 }}>
         <ScrollControls pages={4} damping={0.1}>
-          {/* <ScrollManager section={section} onSectionChange={setSection} /> */}
-          <Experience menuOpened={menuOpened} section={section} />
+          <ScrollManager section={section} onSectionChange={setSection} />
+              <Experience menuOpened={menuOpened} section={section} />
           <Scroll html>
             <Interface />
           </Scroll>
@@ -33,11 +33,10 @@ function App() {
       </Canvas>
       <Menu
         menuOpened={menuOpened}
-        section={section}
         setMenuOpened={setMenuOpened}
         onSectionChange={setSection}
       />
-    {/* <Cursor /> */}
+      {/* <Cursor /> */}
     </Suspense>
   );
 }

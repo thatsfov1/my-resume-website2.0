@@ -18,6 +18,10 @@ import {
   typescript,
 } from "../assets/icons";
 import movie from "../assets/images/movie.png";
+import chicstore from "../assets/images/chic-store.png";
+import foodrecipes from "../assets/images/food-recipes.png";
+import meetfriends from "../assets/images/meetfriends.png";
+import rickandmorty from "../assets/images/rick-and-morty.png";
 
 export const skills = [
   {
@@ -89,49 +93,45 @@ export const skills = [
 
 export const projects = [
   {
-    iconUrl: movie,
-    theme: "btn-back-red",
+    iconUrl: meetfriends,
     name: "MeetFriends",
     description:
       "Developed a React prototype for a social network, which includes user authentication, CRUD operations, chat simulation and profile customization",
     github: "https://github.com/thatsfov1/meet-friends",
-    liveLink: "",
+    liveLink: "https://meetfriends.netlify.app/",
   },
   {
     iconUrl: movie,
-    theme: "btn-back-blue",
     name: "My Movie Choice",
     description:
       "Built a React app aiding movie selection. Enables access to user ratings, descriptions, cast, trailers, and similar content suggestions for movies or series",
     github: "https://github.com/thatsfov1/my-movie-choice",
-    liveLink: "",
+    liveLink: "https://my-movie-choice.netlify.app/",
   },
   {
-    iconUrl: movie,
-    theme: "btn-back-pink",
+    iconUrl: chicstore,
     name: 'E-commerce shop "Chic Stock" ',
     description:
       "Created a React-based laptop shop featuring modern design, animations, and seamless Stripe integration for transactions.",
-    github: "https://github.com/adrianhajdin/social_media_app",
-    liveLink: "",
+    github: "https://github.com/thatsfov1/chic-stock",
+    liveLink: "https://chic-stock.vercel.app/",
   },
   {
-    iconUrl: movie,
-    theme: "btn-back-black",
+    iconUrl: foodrecipes,
     name: "Food Recipes",
     description:
       "Developed a web application for finding recipes. More than thousands of recipes that are listed on basis of various categories",
-    github: "https://github.com/adrianhajdin/projects_realestate",
-    liveLink: "",
+    github: "https://github.com/thatsfov1/food-recipes",
+    liveLink: "https://typescript-food-recipes.netlify.app/",
   },
   {
-    iconUrl: movie,
+    iconUrl: rickandmorty,
     theme: "btn-back-black",
-    name: "Food Recipes",
-    description:
-      "Developed a web application for finding recipes. More than thousands of recipes that are listed on basis of various categories",
-    github: "https://github.com/adrianhajdin/projects_realestate",
-    liveLink: "",
+    name: "Rick and Morty Characters",
+    description:"A React app with Rick and Morty series characters, incorporating custom filters for user-specific searches and demonstrating API integration expertise.",
+    github: "https://github.com/thatsfov1/rick-and-morty-characters",
+    liveLink: "https://thatsfov1.github.io/rick-and-morty-characters/",
+    
   },
 ];
 

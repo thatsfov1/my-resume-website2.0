@@ -4,6 +4,7 @@ import "swiper/css";
 import githubIcon from "../assets/icons/github.svg";
 
 type Props = {
+  isActive: boolean;
   name: string;
   iconUrl: string;
   description: string;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const ProjectCard = ({
+  isActive,
   name,
   iconUrl,
   description,
@@ -20,21 +22,24 @@ const ProjectCard = ({
 }: Props) => {
   return (
     <div
-      className="bg-blue-palette-100 rounded-3xl p-4 w-[350px] h-[500px]"
+      className={`bg-blue-palette-100 flex flex-col rounded-3xl p-4 w-[350px] h-[500px] ${
+        isActive ? " scale-100" : "scale-90 brightness-[90%]"
+      } transition-all`}
     >
       <img alt={name} src={iconUrl} className="rounded-lg" />
-      <div className="relative">
-        <p className="text-left p-2 text-xl font-bold text-slate-800">{name}</p>
-        <div className=" flex-1 py-2 px-4 box-border text-slate-700">
-          {description}
-        </div>
-        <div className="flex w-full p-2 items-center">
-          <a href={github} className="flex-[0.2] bg-black p-3 rounded-lg">
-            <img className="w-5 h-5" src={githubIcon} alt="github" />
+      <p className="text-left p-2 text-xl font-bold text-slate-800">{name}</p>
+      <div className=" flex-1 py-2 px-4 box-border text-slate-700">
+        {description}
+        <div className="flex gap-3 absolute right-0 bottom-0 w-full p-4 items-center">
+          <a
+            href={github} target="_blank"
+            className="flex-[0.2] bg-[#fff] flex items-center justify-center p-3 rounded-lg"
+          >
+            <img className="w-6 h-6" src={githubIcon} alt="github" />
           </a>
           <a
             className="bg-blue-palette-600 text-blue-palette-100 p-3 rounded-lg flex-1"
-            href={liveLink}
+            href={liveLink} target="_blank"
           >
             Live Link
           </a>

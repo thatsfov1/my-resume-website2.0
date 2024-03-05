@@ -1,6 +1,6 @@
 type Props = {
     menuOpened: boolean
-    setMenuOpened:React.Dispatch<React.SetStateAction<boolean>>,
+    setMenuOpened:React.Dispatch<React.SetStateAction<boolean>>
     onSectionChange:React.Dispatch<React.SetStateAction<number>>
 }
 

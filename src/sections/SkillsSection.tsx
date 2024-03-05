@@ -5,7 +5,7 @@ import { skills, languages } from "../constants";
 const SkillsSection = () => {
     return (
       <>
-        <motion.div whileInView={"visible"} className="max-w-[1280px] p-20">
+        <motion.div whileInView={"visible"} className="max-w-[1280px] p-20 mb-32">
           <motion.h1 initial={{opacity:0, x:-100}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}} 
           className="text-4xl text-left font-extrabold leading-snug text-[#f0f4fa] mb-3">
             My Skills

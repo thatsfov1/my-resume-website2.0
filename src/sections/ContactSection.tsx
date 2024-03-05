@@ -46,7 +46,7 @@ const ContactSection = () => {
 
   return (
     <div className="h-screen max-w-[1280px] p-16 flex justify-center ">
-      <div className="bg-blue-palette-100 pt-5 h-[80%] px-4 rounded-xl flex flex-col items-center relative">
+      <div className="bg-blue-palette-100 pt-5 px-4 rounded-xl flex flex-col items-center relative">
         <h1 className="text-4xl font-extrabold  text-blue-palette-600 mb-3">
           Contact me
         </h1>

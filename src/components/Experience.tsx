@@ -35,10 +35,10 @@ const Experience = ({
   const [characterAnimation, setCharacterAnimation] = useState("Falling");
 
   useEffect(() => {
-    setCharacterAnimation("Falling");
-    setTimeout(() => {
-      setCharacterAnimation(section === 0 ? "Greeting" : "Look Around");
-    }, 2299);
+      setCharacterAnimation("Falling");
+      setTimeout(() => {
+        setCharacterAnimation(section === 0 ? "Greeting" : "Look Around");
+      }, 2297);
   }, [section]);
   return (
     <>

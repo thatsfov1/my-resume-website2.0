@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 
 const Avatar = ({ animation }: { animation: string }) => {
@@ -23,16 +23,17 @@ const Avatar = ({ animation }: { animation: string }) => {
   lookAroundAnimation[0].name = "Look Around";
   standingAnimation[0].name = "Standing";
   fallingAnimation[0].name = "Falling";
-  const { actions } = useAnimations(
-    [
-      greetingAnimation[0],
-      standingUpAnimation[0],
-      lookAroundAnimation[0],
-      standingAnimation[0],
-      fallingAnimation[0],
-    ],
-    group
+
+  const anims = useMemo(
+    () => [greetingAnimation[0],
+    standingUpAnimation[0],
+    lookAroundAnimation[0],
+    standingAnimation[0],
+    fallingAnimation[0]],
+    []
   );
+
+  const { actions } = useAnimations(anims,group);
 
   useEffect(() => {
     actions[animation]

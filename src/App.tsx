@@ -18,14 +18,13 @@ function App() {
     setMenuOpened(false);
   }, [section]);
 
-
   return (
     <Suspense fallback={<Loader />}>
       <Toaster />
       <Canvas shadows camera={{ position: [0.4, 0.3, 2.5], fov: 50 }}>
         <ScrollControls pages={4} damping={0.1}>
           <ScrollManager section={section} onSectionChange={setSection} />
-              <Experience menuOpened={menuOpened} section={section} />
+          <Experience menuOpened={menuOpened} section={section} />
           <Scroll html>
             <Interface />
           </Scroll>

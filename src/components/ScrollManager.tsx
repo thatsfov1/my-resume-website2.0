@@ -29,13 +29,16 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
         if (data.offset > lastScroll.current) {
           onSectionChange(1);
           data.el.scrollTo(0, section * sectionHeight);
+          lastScroll.current = data.offset;
         }
         break;
 
       case 1:
-        if (data.offset > lastScroll.current) {
+        if (data.offset > lastScroll.current &&
+          data.offset > 1 / (data.pages - 1)) {
           onSectionChange(2);
           data.el.scrollTo(0, section * sectionHeight);
+          lastScroll.current = data.offset;
         } else if (
           data.offset < lastScroll.current &&
           data.offset < 1 / (data.pages - 1)
@@ -46,7 +49,8 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
         break;
 
       case 2:
-        if (data.offset > lastScroll.current) {
+        if (data.offset > lastScroll.current &&
+          data.offset >2 / (data.pages - 1)) {
           onSectionChange(3);
           data.el.scrollTo(0, section * sectionHeight);
         } else if (
@@ -67,8 +71,6 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
           data.el.scrollTo(0, section * sectionHeight);
         }
         break;
-
-      // Add more cases if you have additional sections
 
       default:
         break;

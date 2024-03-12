@@ -35,18 +35,13 @@ const Experience = ({
   const [characterAnimation, setCharacterAnimation] = useState("Falling");
 
   useEffect(() => {
-      setCharacterAnimation("Falling");
-      setTimeout(() => {
-        setCharacterAnimation(section === 0 ? "Greeting" : "Look Around");
-      }, 2297);
+    setCharacterAnimation("Falling");
+    setTimeout(() => {
+      setCharacterAnimation(section === 0 ? "Greeting" : "Look Around");
+    }, 1800);
   }, [section]);
   return (
     <>
-      <OrbitControls
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
-        enableZoom={false}
-      />
       <Environment preset="sunset" />
       <directionalLight
         intensity={1}

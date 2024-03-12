@@ -127,3 +127,46 @@ body {
 .slider-arrow::after {
   content: "";
 }
+
+.menu-label {
+  @apply text-blue-palette-600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.menu-label::before {
+  content: ">";
+  margin-right: 0.5rem;
+  display: inline-block;
+  opacity: 0; /* Initially set opacity to 0 */
+  transform: translateX(-10px); /* Initially move arrow to the left */
+  transition: all 0.3s ease;
+}
+
+.menu-label:hover {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.menu-label:hover::before {
+  opacity: 1; /* Set opacity to 1 on hover */
+  transform: translateX(0); /* Move arrow to its original position on hover */
+}
+
+.focus-border {
+  outline: none;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.focus-border:focus {
+  box-shadow: inset 0 0 0 2px #9ca3af;
+}
+
+.validation-error{
+  @apply text-[#f87171] flex items-center gap-2 ml-2 leading-[8px]
+}

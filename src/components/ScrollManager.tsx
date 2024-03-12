@@ -1,6 +1,7 @@
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { gsap } from "gsap";
+import { useEffect, useRef } from "react";
 
 type Props = {
   section: number;
@@ -14,15 +15,21 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
 
   data.fill.classList.add("top-0");
   data.fill.classList.add("absolute");
+  const sectionHeight = data.el.clientHeight;
+
+
+  useEffect(() => {
+    data.el.scrollTo(0, section * sectionHeight);
+  }, [section]);
 
   useFrame(() => {
     if (isAnimating.current) {
       lastScroll.current = data.offset;
       return;
     }
+    
 
     const curSection = Math.floor(data.offset * data.pages);
-    const sectionHeight = data.el.clientHeight;
 
     switch (curSection) {
       case 0:

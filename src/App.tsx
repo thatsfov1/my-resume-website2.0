@@ -21,8 +21,8 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <Toaster />
-      <Canvas shadows camera={{ position: [0.4, 0.3, 2.5], fov: 50 }}>
-        <ScrollControls pages={4} damping={0.1}>
+      <Canvas shadows camera={{ position: [0.4, 0.2, 2.5], fov: 50 }}>
+        <ScrollControls pages={4} maxSpeed={0.5} damping={0.1}>
           <ScrollManager section={section} onSectionChange={setSection} />
           <Experience menuOpened={menuOpened} section={section} />
           <Scroll html>
@@ -35,7 +35,7 @@ function App() {
         setMenuOpened={setMenuOpened}
         onSectionChange={setSection}
       />
-      {/* <Cursor /> */}
+      <Cursor />
     </Suspense>
   );
 }

@@ -25,22 +25,22 @@ const Avatar = ({ animation }: { animation: string }) => {
   fallingAnimation[0].name = "Falling";
 
   const anims = useMemo(
-    () => [greetingAnimation[0],
-    standingUpAnimation[0],
-    lookAroundAnimation[0],
-    standingAnimation[0],
-    fallingAnimation[0]],
+    () => [
+      greetingAnimation[0],
+      standingUpAnimation[0],
+      lookAroundAnimation[0],
+      standingAnimation[0],
+      fallingAnimation[0],
+    ],
     []
   );
 
-  const { actions } = useAnimations(anims,group);
+  const { actions } = useAnimations(anims, group);
 
   useEffect(() => {
     actions[animation]
       ?.reset()
-      .fadeIn(1)
-      .setEffectiveTimeScale(1)
-      .setEffectiveWeight(1)
+      .fadeIn(0.5)
       .play();
     return () => {
       actions[animation]?.fadeOut(0.5);

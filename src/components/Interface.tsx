@@ -1,14 +1,11 @@
-import React, { useState } from "react";
 import Icons from "./Icons";
-import { skills, languages, projects } from "../constants";
-import { motion } from "framer-motion";
 import ContactSection from "../sections/ContactSection";
 import AboutSection from "../sections/AboutSection";
 import SkillsSection from "../sections/SkillsSection";
 import ProjectsSection from "../sections/ProjectsSection";
 
 
-const Section = ({ children }) => {
+const Section = ({ children }:{children:React.ReactNode}) => {
   return (
     <section
       className="h-screen w-screen p-16 max-w-screen-2xl mx-auto

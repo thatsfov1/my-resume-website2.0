@@ -1,46 +1,48 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import { TbAlertOctagon } from "react-icons/tb";
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
   const [isLoading, setIsLoading] = useState(false);
+  const form = useRef<HTMLFormElement | null>(null);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    toast.loading("Please wait...", {
-      id: "loading",
-    });
+  const sendEmail = async (data: any) => {
+    if (form.current) {
+      setIsLoading(true);
+      toast.loading("Please wait...", {
+        id: "loading",
+      });
+      try {
+        await emailjs.send(
+          import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+          data,
+          import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        );
+        setIsLoading(false);
+        toast.dismiss("loading");
+        toast.success("Successfully sent");
+        setTimeout(() => {
+          reset();
+        }, [2000]);
+      } catch (e) {
+        setIsLoading(false);
+        console.log(form.current);
 
-    try {
-      await emailjs.send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Yevhenii",
-          from_email: form.email,
-          to_email: "evgkulikovskyy@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      );
-
-      setIsLoading(false);
-
-      toast.success("Successfully sent");
-      setTimeout(() => {
-        setForm({ name: "", email: "", message: "" });
-      }, [2000]);
-    } catch (e) {
-      setIsLoading(false);
-      console.log(e);
-      toast.dismiss("loading");
-      toast.error("I didn't receive your message");
+        console.log(e);
+        toast.dismiss("loading");
+        toast.error("I didn't receive your message");
+      }
+    } else {
+      console.error("Form reference is null");
     }
   };
 
@@ -51,39 +53,56 @@ const ContactSection = () => {
           Contact me
         </h1>
         <form
+          ref={form}
           className="flex flex-col gap-4 p-8 bg-white "
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(sendEmail)}
         >
+          {errors.name && (
+            <div className="validation-error">
+              <TbAlertOctagon /> <>{errors.name?.message}</>
+            </div>
+          )}
           <input
-            className="p-2 rounded-lg outline-none "
+            {...register("name", { required: "Name is required" })}
+            className="focus-border"
             type="text"
             placeholder="Name"
-            required
             name="name"
-            value={form.name}
-            onChange={handleChange}
           />
+          {errors.email && (
+            <div className="validation-error">
+              <TbAlertOctagon /> <>{errors.email?.message}</>
+            </div>
+          )}
           <input
-            className="p-2 rounded-lg outline-none"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Email is incorrect",
+              },
+            })}
+            className="focus-border"
             type="email"
             placeholder="john@gmail.com"
-            required
             name="email"
-            value={form.email}
-            onChange={handleChange}
           />
+          {errors.message && (
+            <div className="validation-error">
+              <TbAlertOctagon /> <>{errors.message?.message}</>
+            </div>
+          )}
           <textarea
-            className="p-2 rounded-lg h-[200px] resize-none outline-none"
+            {...register("message", { required: "Type your message" })}
+            className="focus-border h-[200px] resize-none "
             placeholder="Your message"
-            required
             name="message"
-            value={form.message}
-            onChange={handleChange}
           />
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-blue-palette-600 text-blue-palette-100 p-3 w-[310px] rounded-lg absolute bottom-6 left-0 right-0 mx-auto"
+            className="bg-blue-palette-600 text-blue-palette-100 p-3 w-[310px] transition-all duration-[0.3s] ease-[ease] rounded-lg mt-6
+             hover:scale-105 active:scale-95"
           >
             {isLoading ? "Sending..." : "Send message"}
           </button>

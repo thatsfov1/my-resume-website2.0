@@ -1,10 +1,15 @@
+import { MouseEventHandler } from "react";
+
 type Props = {
   menuOpened: boolean;
   setMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
   onSectionChange: React.Dispatch<React.SetStateAction<number>>;
 };
 
+
+
 const Menu = ({ menuOpened, setMenuOpened, onSectionChange }: Props) => {
+
   return (
     <>
       <button
@@ -47,7 +52,7 @@ const Menu = ({ menuOpened, setMenuOpened, onSectionChange }: Props) => {
 
 type ItemProps = {
   label: string;
-  onClick: Function;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 const MenuItem = ({ label, onClick }: ItemProps) => {

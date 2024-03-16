@@ -1,6 +1,6 @@
 import { projects } from "../constants";
 import ProjectCard from "../components/ProjectCard";
-import { Navigation } from "swiper";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import "swiper/css/navigation";

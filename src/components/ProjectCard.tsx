@@ -1,4 +1,3 @@
-import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 import githubIcon from "../assets/icons/github.svg";

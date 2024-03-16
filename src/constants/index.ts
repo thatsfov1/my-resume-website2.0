@@ -96,7 +96,7 @@ export const projects = [
     iconUrl: meetfriends,
     name: "MeetFriends",
     description:
-      "Developed a React prototype for a social network, which includes user authentication, CRUD operations, chat simulation and profile customization",
+      "Developed a React prototype for a social network, which includes user authentication, CRUD operations, chat simulation and profile customization.",
     github: "https://github.com/thatsfov1/meet-friends",
     liveLink: "https://meetfriends.netlify.app/",
   },
@@ -104,7 +104,7 @@ export const projects = [
     iconUrl: movie,
     name: "My Movie Choice",
     description:
-      "Built a React app aiding movie selection. Enables access to user ratings, descriptions, cast, trailers, and similar content suggestions for movies or series",
+      "Built a React app aiding movie selection. Enables access to user ratings, descriptions, cast, trailers, and similar content suggestions for movies or series.",
     github: "https://github.com/thatsfov1/my-movie-choice",
     liveLink: "https://my-movie-choice.netlify.app/",
   },
@@ -120,7 +120,7 @@ export const projects = [
     iconUrl: foodrecipes,
     name: "Food Recipes",
     description:
-      "Developed a web application for finding recipes. More than thousands of recipes that are listed on basis of various categories",
+      "Developed a web application for finding recipes. More than thousands of recipes that are listed on basis of various categories.",
     github: "https://github.com/thatsfov1/food-recipes",
     liveLink: "https://typescript-food-recipes.netlify.app/",
   },
@@ -128,10 +128,10 @@ export const projects = [
     iconUrl: rickandmorty,
     theme: "btn-back-black",
     name: "Rick and Morty Characters",
-    description:"A React app with Rick and Morty series characters, incorporating custom filters for user-specific searches and demonstrating API integration expertise.",
+    description:
+      "A React app with Rick and Morty series characters, incorporating custom filters for user-specific searches and demonstrating API integration expertise.",
     github: "https://github.com/thatsfov1/rick-and-morty-characters",
     liveLink: "https://thatsfov1.github.io/rick-and-morty-characters/",
-    
   },
 ];
 

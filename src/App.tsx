@@ -13,6 +13,7 @@ import Loader from "./components/Loader";
 function App() {
   const [section, setSection] = useState(0);
   const [menuOpened, setMenuOpened] = useState(false);
+  const [dogAnimation, setDogAnimation] = useState("Standing");
 
   useEffect(() => {
     setMenuOpened(false);
@@ -24,9 +25,9 @@ function App() {
       <Canvas shadows camera={{ position: [0.4, 0.2, 2.5], fov: 50 }}>
         <ScrollControls pages={4} maxSpeed={0.5} damping={0.1}>
           <ScrollManager section={section} onSectionChange={setSection} />
-          <Experience menuOpened={menuOpened} section={section} />
+          <Experience dogAnimation={dogAnimation} setDogAnimation={setDogAnimation} menuOpened={menuOpened} section={section} />
           <Scroll html>
-            <Interface />
+            <Interface setDogAnimation={setDogAnimation}/>
           </Scroll>
         </ScrollControls>
       </Canvas>

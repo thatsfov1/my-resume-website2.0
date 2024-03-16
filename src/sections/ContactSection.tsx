@@ -4,7 +4,11 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { TbAlertOctagon } from "react-icons/tb";
 
-const ContactSection = () => {
+type Props = {
+  setDogAnimation: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const ContactSection = ({ setDogAnimation }: Props) => {
   const {
     register,
     formState: { errors },
@@ -46,15 +50,23 @@ const ContactSection = () => {
     }
   };
 
+  const handleFocus = () => {
+    setDogAnimation("Shake");
+  };
+
+  const handleBlur = () => {
+    setDogAnimation("Sitting");
+  };
+
   return (
-    <div className="h-screen max-w-[1280px] p-16 flex justify-center ">
-      <div className="bg-blue-palette-100 pt-5 px-4 rounded-xl flex flex-col items-center relative">
-        <h1 className="text-4xl font-extrabold  text-blue-palette-600 mb-3">
+    <div className="w-full mt-52 md:p-16 md:mt-0 flex justify-center md:justify-start ">
+      <div className="bg-opacity-50 md:bg-opacity-100 bg-blue-palette-100 pt-5 px-4 rounded-xl flex flex-col items-center relative w-[350px] md:w-[400px]">
+        <h1 className="text-2xl md:text-4xl font-extrabold  text-blue-palette-600 mb-3">
           Contact me
         </h1>
         <form
           ref={form}
-          className="flex flex-col gap-4 p-8 bg-white "
+          className="flex flex-col gap-4 p-4 md:p-8"
           onSubmit={handleSubmit(sendEmail)}
         >
           {errors.name && (
@@ -68,6 +80,8 @@ const ContactSection = () => {
             type="text"
             placeholder="Name"
             name="name"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
           {errors.email && (
             <div className="validation-error">
@@ -86,6 +100,8 @@ const ContactSection = () => {
             type="email"
             placeholder="john@gmail.com"
             name="email"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
           {errors.message && (
             <div className="validation-error">
@@ -97,11 +113,13 @@ const ContactSection = () => {
             className="focus-border h-[200px] resize-none "
             placeholder="Your message"
             name="message"
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
           <button
             disabled={isLoading}
             type="submit"
-            className="bg-blue-palette-600 text-blue-palette-100 p-3 w-[310px] transition-all duration-[0.3s] ease-[ease] rounded-lg mt-6
+            className="bg-blue-palette-600 text-blue-palette-100 p-3 w-full transition-all duration-[0.3s] ease-[ease] rounded-lg mt-6
              hover:scale-105 active:scale-95"
           >
             {isLoading ? "Sending..." : "Send message"}

@@ -1,20 +1,23 @@
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations, useFBX } from "@react-three/drei";
 
-const Dog = ({ section }: { section: number }) => {
+const Dog = ({ animation }: { animation: string }) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("models/dog_model.glb");
 
   animations[0].name = "Greeting";
   animations[1].name = "Rollover";
+  animations[2].name = "Shake";
+  animations[3].name = "Sitting";
+  animations[4].name = "Standing";
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    if (section === 3) {
-      actions["Rollover"]?.reset().play();
-    }
-    actions["Greeting"]?.reset().play();
-  }, [section]);
+    actions[animation]?.reset().fadeIn(0.5).play();
+    return () => {
+      actions[animation]?.fadeOut(0.5);
+    };
+  }, [animation]);
 
   return (
     <group ref={group} dispose={null}>

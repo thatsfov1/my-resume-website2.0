@@ -7,16 +7,29 @@ import Avatar from "./Avatar";
 import Dog from "./Dog";
 import { framerMotionConfig } from "../config";
 
+type Props = {
+  menuOpened: boolean;
+  section: number;
+  dogAnimation: string;
+  setDogAnimation: React.Dispatch<React.SetStateAction<string>>;
+};
+
 const Experience = ({
   section,
   menuOpened,
-}: {
-  menuOpened: boolean;
-  section: number;
-}) => {
+  dogAnimation,
+  setDogAnimation,
+}: Props) => {
   const { viewport } = useThree();
   const cameraPositionX = useMotionValue(0);
   const cameraLookAtX = useMotionValue(0);
+
+  const isMobile = window.innerWidth < 768;
+  const responsiveRatio = viewport.width / 2;
+  const charactersResponsiveRatio = Math.max(
+    0.7,
+    Math.min(1 * responsiveRatio, 1)
+  );
 
   useEffect(() => {
     animate(cameraPositionX, menuOpened ? -2 : 0, {
@@ -39,6 +52,9 @@ const Experience = ({
     setTimeout(() => {
       setCharacterAnimation(section === 0 ? "Greeting" : "Look Around");
     }, 1800);
+    setTimeout(() => {
+      setDogAnimation(section === 0 ? "Greeting" : "Sitting");
+    }, 500);
   }, [section]);
   return (
     <>
@@ -51,20 +67,41 @@ const Experience = ({
         shadow-bias={-0.0001}
       />
       <motion.group
-        position={[1, -1, -0.5]}
+        position={[
+          isMobile ? 0.4 : 1 * charactersResponsiveRatio,
+          isMobile ? -viewport.height : -1,
+          -0.5,
+        ]}
         animate={{
           z: section === 2 ? 0 : -0.5,
-          y: section === 2 ? viewport.height : -1,
+          y: section === 2 ? viewport.height : isMobile ? -1.4 : -1,
         }}
+        transition={{
+          duration: 0.6,
+        }}
+        scale={[
+          charactersResponsiveRatio,
+          charactersResponsiveRatio,
+          charactersResponsiveRatio,
+        ]}
+        rotation={[
+          isMobile && section !== 0 ? -0.1 : 0,
+          isMobile && section !== 0 ? -0.3 : 0,
+          0,
+        ]}
       >
-        <group rotation={[0, -0.3, 0]}>
+        <group rotation={[0, isMobile ? -0.1 : -0.3, 0]}>
           <Avatar animation={characterAnimation} />
         </group>
         <group position={[-1, 0, 0]} scale={[0.01, 0.01, 0.01]}>
-          <Dog section={section} />
+          <Dog animation={dogAnimation} />
         </group>
         <ContactShadows
-          position={[-1, 0, 0.5]}
+          position={[
+            isMobile ? -1.6 : -1,
+            isMobile ? -viewport.height : 0,
+            0.5,
+          ]}
           opacity={0.4}
           blur={1}
           far={10}

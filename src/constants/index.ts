@@ -10,10 +10,6 @@ import {
   redux,
   sass,
   vite,
-  movieselector,
-  recipebook,
-  socialnetwork,
-  ecommerce,
   tailwindcss,
   typescript,
 } from "../assets/icons";
@@ -153,41 +149,3 @@ export const languages = [
     level: 100,
   },
 ];
-
-// export const projects = [
-//     {
-//         title:"My movie choice",
-//         image:"",
-//         subtitle:"Impressive movie app",
-//         github:"",
-//         liveLink:"",
-//     },
-//     {
-//         title:"My movie choice",
-//         image:"",
-//         subtitle:"Impressive movie app",
-//         github:"",
-//         liveLink:"",
-//     },
-//     {
-//         title:"My movie choice",
-//         image:"",
-//         subtitle:"Impressive movie app",
-//         github:"",
-//         liveLink:"",
-//     },
-//     {
-//         title:"My movie choice",
-//         image:"",
-//         subtitle:"Impressive movie app",
-//         github:"",
-//         liveLink:"",
-//     },
-//     {
-//         title:"My movie choice",
-//         image:"",
-//         subtitle:"Impressive movie app",
-//         github:"",
-//         liveLink:"",
-//     }
-// ]

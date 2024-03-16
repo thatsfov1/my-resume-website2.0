@@ -25,7 +25,6 @@ const ProjectsSection = () => {
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
-          clickable: true,
         }}
         initialSlide={2}
         modules={[Navigation]}

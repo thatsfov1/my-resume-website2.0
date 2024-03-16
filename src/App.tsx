@@ -25,9 +25,14 @@ function App() {
       <Canvas shadows camera={{ position: [0.4, 0.2, 2.5], fov: 50 }}>
         <ScrollControls pages={4} maxSpeed={0.5} damping={0.1}>
           <ScrollManager section={section} onSectionChange={setSection} />
-          <Experience dogAnimation={dogAnimation} setDogAnimation={setDogAnimation} menuOpened={menuOpened} section={section} />
+          <Experience
+            dogAnimation={dogAnimation}
+            setDogAnimation={setDogAnimation}
+            menuOpened={menuOpened}
+            section={section}
+          />
           <Scroll html>
-            <Interface setDogAnimation={setDogAnimation}/>
+            <Interface setDogAnimation={setDogAnimation} />
           </Scroll>
         </ScrollControls>
       </Canvas>

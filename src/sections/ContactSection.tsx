@@ -36,7 +36,7 @@ const ContactSection = ({ setDogAnimation }: Props) => {
         toast.success("Successfully sent");
         setTimeout(() => {
           reset();
-        }, [2000]);
+        }, 2000);
       } catch (e) {
         setIsLoading(false);
         console.log(form.current);

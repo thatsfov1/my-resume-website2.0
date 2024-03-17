@@ -1,6 +1,6 @@
 import { ContactShadows, Environment } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { MotionValue, animate, useMotionValue } from "framer-motion";
+import { animate, useMotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion-3d";
 import Avatar from "./Avatar";

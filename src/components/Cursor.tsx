@@ -8,7 +8,7 @@ let outlineX = 0;
 let outlineY = 0;
 
 export const Cursor = () => {
-  const cursorOutline = useRef();
+  const cursorOutline = useRef<HTMLDivElement>(null);
   const [hoverButton, setHoverButton] = useState(false);
 
   const animate = () => {
@@ -26,7 +26,7 @@ export const Cursor = () => {
   };
 
   useEffect(() => {
-    const mouseEventsListener = (event) => {
+    const mouseEventsListener = (event:any) => {
       mouseX = event.pageX;
       mouseY = event.pageY;
     };
@@ -41,7 +41,7 @@ export const Cursor = () => {
   }, []);
 
   useEffect(() => {
-    const mouseEventListener = (e) => {
+    const mouseEventListener = (e:any) => {
       if (
         e.target.tagName.toLowerCase() === "button" ||
         e.target.parentElement.tagName.toLowerCase() === "button" ||

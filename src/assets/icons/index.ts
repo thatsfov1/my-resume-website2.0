@@ -12,12 +12,14 @@ import tailwindcss from './tailwindcss.svg'
 import typescript from './typescript.svg'
 import linkedin from './linkedin.svg'
 import arrow from './arrow.svg'
+import loader from './loader.svg'
 import vite from './vite.svg'
 
 export {
     css,
     git,
     github,
+    loader,
     html,
     javascript,
     motion,

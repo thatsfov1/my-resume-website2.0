@@ -1,6 +1,6 @@
 import { ContactShadows, Environment } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { animate, useMotionValue } from "framer-motion";
+import { MotionValue, animate, useMotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion-3d";
 import Avatar from "./Avatar";
@@ -22,7 +22,7 @@ const Experience = ({
 }: Props) => {
   const { viewport } = useThree();
   const cameraPositionX = useMotionValue(0);
-  const cameraLookAtX = useMotionValue(0);
+  const cameraLookAtX= useMotionValue(0);
 
   const isMobile = window.innerWidth < 768;
   const responsiveRatio = viewport.width / 2;
@@ -34,10 +34,10 @@ const Experience = ({
   useEffect(() => {
     animate(cameraPositionX, menuOpened ? -2 : 0, {
       ...framerMotionConfig,
-    });
+    } as any);
     animate(cameraLookAtX, menuOpened ? 2 : 0, {
       ...framerMotionConfig,
-    });
+    } as any);
   }, [menuOpened]);
 
   useFrame((state) => {

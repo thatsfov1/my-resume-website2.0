@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { useGLTF, useAnimations, useFBX } from "@react-three/drei";
+import { useEffect, useRef, RefObject } from "react";
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { SkinnedMesh, Group } from "three";
 
 const Dog = ({ animation }: { animation: string }) => {
-  const group = useRef();
+  const group: RefObject<Group | undefined> = useRef<Group>(null); 
   const { nodes, materials, animations } = useGLTF("models/dog_model.glb");
 
   animations[0].name = "Greeting";
@@ -19,8 +20,10 @@ const Dog = ({ animation }: { animation: string }) => {
     };
   }, [animation]);
 
+  const Object = nodes.Object_206 as SkinnedMesh;
+
   return (
-    <group ref={group} dispose={null}>
+    <group ref={group as RefObject<Group>} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group
@@ -56,9 +59,9 @@ const Dog = ({ animation }: { animation: string }) => {
                         <skinnedMesh
                           receiveShadow
                           name="Object_206"
-                          geometry={nodes.Object_206.geometry}
+                          geometry={Object.geometry}
                           material={materials.Material_0}
-                          skeleton={nodes.Object_206.skeleton}
+                          skeleton={Object.skeleton}
                         />
                         <group name="Object_205" />
                       </group>

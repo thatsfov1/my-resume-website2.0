@@ -27,15 +27,16 @@ const Section = ({
 
 type Props = {
   setDogAnimation: React.Dispatch<React.SetStateAction<string>>;
+  onSectionChange: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Interface = ({ setDogAnimation }: Props) => {
+const Interface = ({ setDogAnimation,onSectionChange }: Props) => {
   return (
     <>
       <Icons />
       <div className="flex flex-col items-center w-screen">
         <Section mobileTop>
-          <AboutSection />
+          <AboutSection onSectionChange={onSectionChange}/>
         </Section>
         <Section>
           <SkillsSection />

@@ -13,7 +13,7 @@ import {
   tailwindcss,
   typescript,
 } from "../assets/icons";
-import movie from "../assets/images/movie.png";
+import movie from "../assets/images/my-movie-choice.png";
 import chicstore from "../assets/images/chic-store.png";
 import foodrecipes from "../assets/images/food-recipes.png";
 import meetfriends from "../assets/images/meetfriends.png";

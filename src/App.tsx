@@ -32,7 +32,10 @@ function App() {
             section={section}
           />
           <Scroll html>
-            <Interface setDogAnimation={setDogAnimation} />
+            <Interface
+              onSectionChange={setSection}
+              setDogAnimation={setDogAnimation}
+            />
           </Scroll>
         </ScrollControls>
       </Canvas>

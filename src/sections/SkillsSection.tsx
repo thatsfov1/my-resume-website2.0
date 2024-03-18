@@ -19,7 +19,6 @@ const SkillsSection = () => {
               className="block-container w-12 h-12 md:w-14 md:h-14"
               key={skill.name}
             >
-              <div className="btn-back rounded-xl" />
               <div className="btn-front rounded-xl flex justify-center items-center">
                 <img
                   alt={skill.name}

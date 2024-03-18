@@ -16,7 +16,6 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
   data.fill.classList.add("absolute");
   const sectionHeight = data.el.clientHeight;
 
-
   useEffect(() => {
     data.el.scrollTo(0, section * sectionHeight);
   }, [section]);
@@ -26,11 +25,12 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
       lastScroll.current = data.offset;
       return;
     }
-    
 
     const curSection = Math.floor(data.offset * data.pages);
-
+    console.log(curSection);
+    
     switch (curSection) {
+
       case 0:
         if (data.offset > lastScroll.current) {
           onSectionChange(1);
@@ -40,8 +40,10 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
         break;
 
       case 1:
-        if (data.offset > lastScroll.current &&
-          data.offset > 1 / (data.pages - 1)) {
+        if (
+          data.offset > lastScroll.current &&
+          data.offset > 1 / (data.pages - 1)
+        ) {
           onSectionChange(2);
           data.el.scrollTo(0, section * sectionHeight);
           lastScroll.current = data.offset;
@@ -55,8 +57,10 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
         break;
 
       case 2:
-        if (data.offset > lastScroll.current &&
-          data.offset >2 / (data.pages - 1)) {
+        if (
+          data.offset > lastScroll.current &&
+          data.offset > 2 / (data.pages - 1)
+        ) {
           onSectionChange(3);
           data.el.scrollTo(0, section * sectionHeight);
         } else if (
@@ -78,9 +82,13 @@ export const ScrollManager = ({ section, onSectionChange }: Props) => {
         }
         break;
 
+      
+
       default:
         break;
     }
+     
+
 
     lastScroll.current = data.offset;
   });

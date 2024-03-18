@@ -80,36 +80,21 @@ body {
 .block-container {
   position: relative;
   transition: 250ms;
+  z-index: ;
   perspective: 500px;
-}
-
-.block-container .btn-back {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: inherit;
-  height: inherit;
-  transition: 250ms;
-  transform-style: preserve-3d;
-  transform-origin: bottom right;
-  transform: rotateZ(15deg);
-  will-change: transform;
-  box-shadow: 0 0 3px #e4e4e4;
 }
 
 .block-container .btn-front {
   position: absolute;
-  inset: 0;
   z-index: 1;
   width: inherit;
   height: inherit;
   background-color: #ffffff89;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   transition: 250ms;
   transform-style: preserve-3d;
   transform-origin: top left;
   overflow: hidden;
+  box-shadow: 0 0 8px #ffffff;
 }
 
 .block-container:hover > .btn-back {
@@ -174,6 +159,6 @@ body {
   padding-bottom: 32px;
 }
 
-.title{
-  @apply text-2xl md:text-4xl text-left font-extrabold leading-snug text-blue-palette-100 mb-3
+.title {
+  @apply text-2xl md:text-4xl text-left font-extrabold leading-snug text-blue-palette-100 mb-3;
 }

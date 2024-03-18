@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 
-const AboutSection = () => {
+type Props = {
+  onSectionChange: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const AboutSection = ({onSectionChange}:Props) => {
   return (
     <div className="text-left p-0 md:p-20 mt-8 md:mt-0">
       <motion.h1
@@ -35,6 +39,7 @@ const AboutSection = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
         className="btn"
+        onClick={() => onSectionChange(2)}
       >
         Check out my Projects
       </motion.button>

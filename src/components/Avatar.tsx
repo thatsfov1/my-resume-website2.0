@@ -1,9 +1,35 @@
 import { useEffect, useMemo, useRef, RefObject } from "react";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
-import { SkinnedMesh ,Group} from "three";
+import { Group} from "three";
+import { GLTF } from 'three-stdlib'
+
+type GLTFResult = GLTF & {
+  nodes: {
+    EyeLeft: THREE.SkinnedMesh
+    EyeRight: THREE.SkinnedMesh
+    Wolf3D_Head: THREE.SkinnedMesh
+    Wolf3D_Teeth: THREE.SkinnedMesh
+    Wolf3D_Hair: THREE.SkinnedMesh
+    Wolf3D_Outfit_Top: THREE.SkinnedMesh
+    Wolf3D_Outfit_Bottom: THREE.SkinnedMesh
+    Wolf3D_Outfit_Footwear: THREE.SkinnedMesh
+    Wolf3D_Body: THREE.SkinnedMesh
+    Hips: THREE.Bone
+  }
+  materials: {
+    Wolf3D_Eye: THREE.MeshStandardMaterial
+    Wolf3D_Skin: THREE.MeshStandardMaterial
+    Wolf3D_Teeth: THREE.MeshStandardMaterial
+    Wolf3D_Hair: THREE.MeshStandardMaterial
+    Wolf3D_Outfit_Top: THREE.MeshStandardMaterial
+    Wolf3D_Outfit_Bottom: THREE.MeshStandardMaterial
+    Wolf3D_Outfit_Footwear: THREE.MeshStandardMaterial
+    Wolf3D_Body: THREE.MeshStandardMaterial
+  }
+}
 
 const Avatar = ({ animation }: { animation: string }) => {
-  const { nodes, materials } = useGLTF("models/my_model.glb");
+  const { nodes, materials } = useGLTF("models/my_model.glb") as GLTFResult;
   const group: RefObject<Group | undefined> = useRef<Group>(null); 
   const { animations: greetingAnimation } = useFBX("animations/Greeting.fbx");
   const { animations: lookAroundAnimation } = useFBX(
@@ -31,87 +57,77 @@ const Avatar = ({ animation }: { animation: string }) => {
     };
   }, [animation]);
 
-  const eyeLeft = nodes.EyeLeft as SkinnedMesh;
-  const eyeRight = nodes.EyeRight as SkinnedMesh;
-  const head = nodes.Wolf3D_Head as SkinnedMesh;
-  const hair = nodes.Wolf3D_Hair as SkinnedMesh;
-  const outfit_top = nodes.Wolf3D_Outfit_Top as SkinnedMesh;
-  const outfit_bottom = nodes.Wolf3D_Outfit_Bottom as SkinnedMesh;
-  const outfit_footwear = nodes.Wolf3D_Outfit_Footwear as SkinnedMesh;
-  const body = nodes.Wolf3D_Body as SkinnedMesh;
-
   return (
     <group ref={group as RefObject<Group>} dispose={null}>
       <primitive object={nodes.Hips} />
       <skinnedMesh
-        castShadow
         name="EyeLeft"
-        geometry={eyeLeft.geometry}
+        geometry={nodes.EyeLeft.geometry}
         material={materials.Wolf3D_Eye}
-        skeleton={eyeLeft.skeleton}
-        morphTargetDictionary={eyeLeft.morphTargetDictionary}
-        morphTargetInfluences={eyeLeft.morphTargetInfluences}
+        skeleton={nodes.EyeLeft.skeleton}
+        morphTargetDictionary={nodes.EyeLeft.morphTargetDictionary}
+        morphTargetInfluences={nodes.EyeLeft.morphTargetInfluences}
       />
       <skinnedMesh
-        castShadow
         name="EyeRight"
-        geometry={eyeRight.geometry}
+        geometry={nodes.EyeRight.geometry}
         material={materials.Wolf3D_Eye}
-        skeleton={eyeRight.skeleton}
-        morphTargetDictionary={eyeRight.morphTargetDictionary}
-        morphTargetInfluences={eyeRight.morphTargetInfluences}
+        skeleton={nodes.EyeRight.skeleton}
+        morphTargetDictionary={nodes.EyeRight.morphTargetDictionary}
+        morphTargetInfluences={nodes.EyeRight.morphTargetInfluences}
       />
       <skinnedMesh
-        castShadow
         name="Wolf3D_Head"
-        geometry={head.geometry}
+        geometry={nodes.Wolf3D_Head.geometry}
         material={materials.Wolf3D_Skin}
-        skeleton={head.skeleton}
-        morphTargetDictionary={head.morphTargetDictionary}
-        morphTargetInfluences={head.morphTargetInfluences}
+        skeleton={nodes.Wolf3D_Head.skeleton}
+        morphTargetDictionary={nodes.Wolf3D_Head.morphTargetDictionary}
+        morphTargetInfluences={nodes.Wolf3D_Head.morphTargetInfluences}
       />
-
       <skinnedMesh
-        castShadow
-        geometry={hair.geometry}
+        name="Wolf3D_Teeth"
+        geometry={nodes.Wolf3D_Teeth.geometry}
+        material={materials.Wolf3D_Teeth}
+        skeleton={nodes.Wolf3D_Teeth.skeleton}
+        morphTargetDictionary={nodes.Wolf3D_Teeth.morphTargetDictionary}
+        morphTargetInfluences={nodes.Wolf3D_Teeth.morphTargetInfluences}
+      />
+      <skinnedMesh
+        geometry={nodes.Wolf3D_Hair.geometry}
         material={materials.Wolf3D_Hair}
-        skeleton={hair.skeleton}
+        skeleton={nodes.Wolf3D_Hair.skeleton}
       />
       <skinnedMesh
-        castShadow
         name="Wolf3D_Outfit_Top"
-        geometry={outfit_top.geometry}
+        geometry={nodes.Wolf3D_Outfit_Top.geometry}
         material={materials.Wolf3D_Outfit_Top}
-        skeleton={outfit_top.skeleton}
-        morphTargetDictionary={outfit_top.morphTargetDictionary}
-        morphTargetInfluences={outfit_top.morphTargetInfluences}
+        skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
+        morphTargetDictionary={nodes.Wolf3D_Outfit_Top.morphTargetDictionary}
+        morphTargetInfluences={nodes.Wolf3D_Outfit_Top.morphTargetInfluences}
       />
       <skinnedMesh
-        castShadow
         name="Wolf3D_Outfit_Bottom"
-        geometry={outfit_bottom.geometry}
+        geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
         material={materials.Wolf3D_Outfit_Bottom}
-        skeleton={outfit_bottom.skeleton}
-        morphTargetDictionary={outfit_bottom.morphTargetDictionary}
-        morphTargetInfluences={outfit_bottom.morphTargetInfluences}
+        skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
+        morphTargetDictionary={nodes.Wolf3D_Outfit_Bottom.morphTargetDictionary}
+        morphTargetInfluences={nodes.Wolf3D_Outfit_Bottom.morphTargetInfluences}
       />
       <skinnedMesh
-        castShadow
         name="Wolf3D_Outfit_Footwear"
-        geometry={outfit_footwear.geometry}
+        geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
         material={materials.Wolf3D_Outfit_Footwear}
-        skeleton={outfit_footwear.skeleton}
-        morphTargetDictionary={outfit_footwear.morphTargetDictionary}
-        morphTargetInfluences={outfit_footwear.morphTargetInfluences}
+        skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
+        morphTargetDictionary={nodes.Wolf3D_Outfit_Footwear.morphTargetDictionary}
+        morphTargetInfluences={nodes.Wolf3D_Outfit_Footwear.morphTargetInfluences}
       />
       <skinnedMesh
-        castShadow
         name="Wolf3D_Body"
-        geometry={body.geometry}
+        geometry={nodes.Wolf3D_Body.geometry}
         material={materials.Wolf3D_Body}
-        skeleton={body.skeleton}
-        morphTargetDictionary={body.morphTargetDictionary}
-        morphTargetInfluences={body.morphTargetInfluences}
+        skeleton={nodes.Wolf3D_Body.skeleton}
+        morphTargetDictionary={nodes.Wolf3D_Body.morphTargetDictionary}
+        morphTargetInfluences={nodes.Wolf3D_Body.morphTargetInfluences}
       />
     </group>
   );

@@ -1,10 +1,21 @@
 import { useEffect, useRef, RefObject } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { SkinnedMesh, Group } from "three";
+import { Group } from "three";
+import { GLTF } from 'three-stdlib'
+
+type GLTFResult = GLTF & {
+  nodes: {
+    Object_206: THREE.SkinnedMesh
+    _rootJoint: THREE.Bone
+  }
+  materials: {
+    Material_0: THREE.MeshStandardMaterial
+  }
+}
 
 const Dog = ({ animation }: { animation: string }) => {
   const group: RefObject<Group | undefined> = useRef<Group>(null); 
-  const { nodes, materials, animations } = useGLTF("models/dog_model.glb");
+  const { nodes, materials, animations } = useGLTF("models/dog_model.glb") as GLTFResult;
 
   animations[0].name = "Greeting";
   animations[1].name = "Rollover";
@@ -19,8 +30,6 @@ const Dog = ({ animation }: { animation: string }) => {
       actions[animation]?.fadeOut(0.5);
     };
   }, [animation]);
-
-  const Object = nodes.Object_206 as SkinnedMesh;
 
   return (
     <group ref={group as RefObject<Group>} dispose={null}>
@@ -59,9 +68,9 @@ const Dog = ({ animation }: { animation: string }) => {
                         <skinnedMesh
                           receiveShadow
                           name="Object_206"
-                          geometry={Object.geometry}
+                          geometry={nodes.Object_206.geometry}
                           material={materials.Material_0}
-                          skeleton={Object.skeleton}
+                          skeleton={nodes.Object_206.skeleton}
                         />
                         <group name="Object_205" />
                       </group>

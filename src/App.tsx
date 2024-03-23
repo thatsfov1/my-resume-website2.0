@@ -6,13 +6,14 @@ import { Cursor } from "./components/Cursor";
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
 import Menu from "./components/Menu";
-import { ScrollManager } from "./components/ScrollManager";
 import { Toaster } from "react-hot-toast";
-import Loader from "./components/Loader";
+import { LoadingScreen } from "./components/LoadingScreen";
+import { ScrollManager } from "./components/ScrollManager";
 
-function App() {
+const App = () => {
   const [section, setSection] = useState(0);
   const [menuOpened, setMenuOpened] = useState(false);
+  const [started, setStarted] = useState(false);
   const [dogAnimation, setDogAnimation] = useState("Standing");
 
   useEffect(() => {
@@ -20,17 +21,23 @@ function App() {
   }, [section]);
 
   return (
-    <Suspense fallback={<Loader />}>
+    <>
+      <LoadingScreen started={started} setStarted={setStarted} /> 
       <Toaster />
       <Canvas shadows camera={{ position: [0.4, 0.2, 2.5], fov: 50 }}>
-        <ScrollControls pages={4} maxSpeed={0.5} damping={0.1}>
-          <ScrollManager section={section} onSectionChange={setSection} />
-          <Experience
-            dogAnimation={dogAnimation}
-            setDogAnimation={setDogAnimation}
-            menuOpened={menuOpened}
-            section={section}
-          />
+        <ScrollControls pages={4} damping={0.1}>
+        <ScrollManager section={section} onSectionChange={setSection} />
+          <Suspense >
+            {started && (
+              <Experience
+              dogAnimation={dogAnimation}
+              setDogAnimation={setDogAnimation}
+              menuOpened={menuOpened}
+              section={section}
+            />
+            )}
+          </Suspense>
+
           <Scroll html>
             <Interface
               onSectionChange={setSection}
@@ -45,8 +52,8 @@ function App() {
         onSectionChange={setSection}
       />
       <Cursor />
-    </Suspense>
+    </>
   );
-}
+};
 
 export default App;

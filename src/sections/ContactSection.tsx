@@ -66,7 +66,7 @@ const ContactSection = ({ setDogAnimation }: Props) => {
         </h1>
         <form
           ref={form}
-          className="flex flex-col gap-4 p-4 md:p-8"
+          className="flex flex-col gap-4 p-4 md:p-8 w-full"
           onSubmit={handleSubmit(sendEmail)}
         >
           {errors.name && (

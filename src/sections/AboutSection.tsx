@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 type Props = {
   onSectionChange: React.Dispatch<React.SetStateAction<number>>;
-}
+};
 
-const AboutSection = ({onSectionChange}:Props) => {
+const AboutSection = ({ onSectionChange }: Props) => {
   return (
     <div className="text-left p-0 md:p-20 mt-8 md:mt-0">
       <motion.h1
